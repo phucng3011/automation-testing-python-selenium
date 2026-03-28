@@ -156,9 +156,9 @@ reports/screenshots/
 ---
 
 ## Sample Report
-![Allure Report 1](sample-report\allure-report-1.png)
-![Allure Report 2](sample-report\allure-report-2.png)
-![Allure Report 3](sample-report\allure-report-3.png)
+![Allure Report 1](sample-report/allure-report-1.png)
+![Allure Report 2](sample-report/allure-report-2.png)
+![Allure Report 3](sample-report/allure-report-3.png)
 
 ---
 
