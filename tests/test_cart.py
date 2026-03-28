@@ -20,7 +20,6 @@ def test_add_product_to_cart(driver):
 
 def test_cart_empty_initially(driver):
     cart = CartPage(driver)
-    cart.open()
     cart.open_cart()
 
     items = cart.get_cart_items()

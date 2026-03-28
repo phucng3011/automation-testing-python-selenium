@@ -1,25 +1,26 @@
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from pages.base_page import BasePage
 
-class CartPage:
-    def __init__(self, driver):
-        self.driver = driver
+class CartPage(BasePage):
 
-    first_product = (By.CSS_SELECTOR, ".fixed_wrapper")
     add_to_cart_btn = (By.CSS_SELECTOR, ".productcart")
-    cart_button = (By.ID, "main_menu_top")
-    cart_link = (By.XPATH, "//a[contains(@href,'checkout/cart')]")
     cart_items = (By.CSS_SELECTOR, ".table tbody tr")
 
     def open(self):
-        self.driver.get("https://automationteststore.com/")
-
-    def add_first_product_to_cart(self):
-        buttons = self.driver.find_elements(*self.add_to_cart_btn)
-        buttons[0].click()
+        self.open_url()
 
     def open_cart(self):
-        self.driver.get("https://automationteststore.com/index.php?rt=checkout/cart")
+        route = self.config.get_route("cart")
+        self.open_url(route)
+
+    def add_first_product_to_cart(self):
+        wait = WebDriverWait(self.driver, 10)
+        buttons = wait.until(
+            EC.presence_of_all_elements_located(self.add_to_cart_btn)
+        )
+        buttons[0].click()
 
     def get_cart_items(self):
         return self.driver.find_elements(*self.cart_items)

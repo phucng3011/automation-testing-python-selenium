@@ -1,5 +1,9 @@
 {
   "base_url": "https://automationteststore.com/",
+  "routes": {
+    "home": "",
+    "cart": "index.php?rt=checkout/cart"
+  },
   "browser": "chrome",
   "timeout": 10
 }

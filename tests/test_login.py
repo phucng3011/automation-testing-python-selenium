@@ -23,6 +23,7 @@ def test_login_data_driven(driver, data):
         assert not login.is_login_successful()
 
 
+@pytest.mark.skip(reason="Used for screenshot demo")
 def test_force_fail_screenshot(driver):
     driver.get("https://example.com")
     assert driver.title == "This Title Does Not Exist"

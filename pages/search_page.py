@@ -1,15 +1,14 @@
 from selenium.webdriver.common.by import By
+from pages.base_page import BasePage
 
-class SearchPage:
-    def __init__(self, driver):
-        self.driver = driver
+class SearchPage(BasePage):
 
     search_box = (By.ID, "filter_keyword")
     search_button = (By.CLASS_NAME, "button-in-search")
     product_titles = (By.CSS_SELECTOR, ".prdocutname")
 
     def open(self):
-        self.driver.get("https://automationteststore.com/")
+        self.open_url()
 
     def search_product(self, keyword):
         self.driver.find_element(*self.search_box).clear()
