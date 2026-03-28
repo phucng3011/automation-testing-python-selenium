@@ -1,6 +1,9 @@
 import pytest
 from utils.driver_factory import get_driver
 from pages.login_page import LoginPage
+from utils.data_reader import load_test_data
+
+test_data = load_test_data("data/testdata.json")["login"]
 
 @pytest.fixture
 def driver():
@@ -8,20 +11,13 @@ def driver():
     yield driver
     driver.quit()
 
-def test_login_success(driver):
+@pytest.mark.parametrize("data", test_data)
+def test_login_data_driven(driver, data):
     login = LoginPage(driver)
     login.open()
-    login.login("Admin", "admin123")
-    assert login.is_login_successful()
+    login.login(data["username"], data["password"])
 
-def test_login_invalid_password(driver):
-    login = LoginPage(driver)
-    login.open()
-    login.login("Admin", "wrongpass")
-    assert not login.is_login_successful()
-
-def test_login_empty_fields(driver):
-    login = LoginPage(driver)
-    login.open()
-    login.login("", "")
-    assert "login" in driver.current_url
+    if data["expected"] == "success":
+        assert login.is_login_successful()
+    else:
+        assert not login.is_login_successful()

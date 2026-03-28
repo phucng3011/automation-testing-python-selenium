@@ -1,0 +1,29 @@
+{
+  "login": [
+    {
+      "username": "Admin",
+      "password": "admin123",
+      "expected": "success"
+    },
+    {
+      "username": "Admin",
+      "password": "wrongpass",
+      "expected": "fail"
+    },
+    {
+      "username": "",
+      "password": "",
+      "expected": "fail"
+    }
+  ],
+  "search": [
+    {
+      "keyword": "shampoo",
+      "expected": "found"
+    },
+    {
+      "keyword": "abcdefxyz123",
+      "expected": "not_found"
+    }
+  ]
+}
